@@ -39,13 +39,11 @@
      <Compile Include="Assets\EndEdit.cs" />
      <Compile Include="Assets\uiHandler.cs" />
      <Compile Include="Assets\uSplineDropdown.cs" />
-     <Compile Include="Assets\ResetScript.cs" />
      <Compile Include="Assets\uiHandlerSpline.cs" />
-     <Compile Include="Assets\uBezier.cs" />
+     <Compile Include="Assets\uSpline.cs" />
      <Compile Include="Assets\uSphere.cs" />
      <Compile Include="Assets\tooltip.cs" />
      <Compile Include="Assets\OpenScene.cs" />
-     <Compile Include="Assets\SumPanel.cs" />
      <Compile Include="Assets\uMostraVideo.cs" />
      <Compile Include="Assets\CameraScript.cs" />
      <None Include="Assets\Arch.shader" />

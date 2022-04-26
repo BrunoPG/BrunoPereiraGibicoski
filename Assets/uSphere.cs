@@ -4,33 +4,33 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class uSphere : MonoBehaviour//, IPointerEnterHandler, IPointerExitHandler
+public class uSphere : MonoBehaviour
 {
-    
     private bool wMouseOver = false;
-    // Start is called before the first frame update
     private float wT;
 
-    // Update is called once per frame
     void Update()
     {
-     if ((wMouseOver))
+        //Rotina que mostra o hint dos pontos.
+        if ((wMouseOver))
         {
             tooltip.pShowTooltip_Static("T = " + wT);
         }
     }
     public void setT(float prfloat)
     {
+        //Rotina que atribui o valor ao hint.
         wT = prfloat;
     }
-      public void OnMouseExit()
+    public void OnMouseExit()
     {
-            wMouseOver = false;
-            tooltip.pHideTooltip_Static();
-
+        //Rotina que esconde o hint.
+        wMouseOver = false;
+        tooltip.pHideTooltip_Static();
     }
     public void OnMouseOver()
     {
-            wMouseOver = true;
+        //Rotina que ativa a variável que sinaliza que o ponto está sendo focado.
+        wMouseOver = true;
     }
 }

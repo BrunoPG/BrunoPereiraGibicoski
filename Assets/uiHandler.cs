@@ -12,6 +12,7 @@ public class matriz
     public GameObject cube;
     public matriz(int pIndex, Matrix4x4 pMatrix, Color pCor, Material pMaterial, int prType = 1)
     {
+        //Objeto matriz e suas propriedades.
         index = pIndex;
         matrix = pMatrix;
         if (prType == 1)
@@ -78,6 +79,7 @@ public class uiHandler : MonoBehaviour
     private EventSystem wEventSystem;
     public static float strToFloat(InputField prImp)
     {
+        //Rotina converte texto de um inputfield para float.
         if ((prImp.text == null) | (prImp.text.Trim() == "") | (prImp.text.Trim() == "-"))
         {
             return 0;
@@ -89,6 +91,7 @@ public class uiHandler : MonoBehaviour
     }
     public static int strToInt(InputField prImp)
     {
+        //Rotina converte texto de um inputfield para integer.
         if ((prImp.text == null) | (prImp.text.Trim() == "") | (prImp.text.Trim() == "-"))
         {
             return 0;
@@ -100,6 +103,7 @@ public class uiHandler : MonoBehaviour
     }
     void OnDrawGizmos()
     {
+        //Rotina que atualiza a matriz goblal.
         Gizmos.matrix = transform.localToWorldMatrix;
         Gizmos.DrawCube(Vector3.zero, Vector3.one);
     }
@@ -181,10 +185,12 @@ public class uiHandler : MonoBehaviour
 
     void btVoltarClick()
     {
+        //Rotina que volta para o menu principal.
         SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
     }
     void pSetOutlinePosition()
     {
+        //Rotina que altera a posição da outline do objeto gráfico atual.
         float wDist = 0.5f;
         if (allObjects[wCubeIndex].cube.tag == "Point")
         {
@@ -214,13 +220,13 @@ public class uiHandler : MonoBehaviour
         wCubeOutline.positionCount = vertices.Length;
         for (int i = 0; i < vertices.Length; i++)
         {
-            //Debug.Log(vertices[i]);
             wCubeOutline.SetPosition(i, vertices[i]);
         }
 
     }
     void btInstructionsClick()
     {
+        //Rotina que abre a tela de tutorial.
         if (HelpPanel != null)
         {
             HelpPanel.SetActive(true);
@@ -229,15 +235,17 @@ public class uiHandler : MonoBehaviour
     }
     void btInstructionsCloseClick()
     {
+        //Rotina que fecha a tela de tutorial.
         HelpPanel.SetActive(false);
     }
     void slTranspChange(float prValue)
     {
+        //Rotina que altera a transparência do objeto gráfico atual.
         cor.a = prValue;
     }
     void btCoresClick()
     {
-        //Rotina que altera cor do polígono
+        //Rotina que altera cor do polígono.
         if (cor == Color.yellow)
         {
             cor = Color.blue;
@@ -281,7 +289,7 @@ public class uiHandler : MonoBehaviour
     }
     void btTranspostaClick()
     {
-        //Rotina que converte a matriz na matriz transposta
+        //Rotina que converte a matriz na matriz transposta.
         if (allObjects[wCubeIndex].cube.tag == "Cube")
         {
             string f01 = field01.text;
@@ -313,7 +321,7 @@ public class uiHandler : MonoBehaviour
     }
     void btInsertClick()
     {
-        //Rotina que insere mais um polígono
+        //Rotina que insere mais um polígono.
         wCubeIndex = allObjects.Count;
         btCoresClick();
         btResetClick();
@@ -326,7 +334,7 @@ public class uiHandler : MonoBehaviour
     }
     void btInsertPointClick()
     {
-        //Rotina que insere mais um polígono
+        //Rotina que insere mais um polígono.
         wCubeIndex = allObjects.Count;
         btCoresClick();
         btResetClick();
@@ -341,8 +349,8 @@ public class uiHandler : MonoBehaviour
     }
     void btResetClick()
     {
-        //Rotina que converte a matriz para a matriz identidade
-        if ((wCubeIndex == allObjects.Count)||(allObjects[wCubeIndex].cube.tag == "Cube"))
+        //Rotina que converte a matriz para a matriz identidade.
+        if ((wCubeIndex == allObjects.Count) || (allObjects[wCubeIndex].cube.tag == "Cube"))
         {
             field00.text = "1";
             field01.text = "0";
@@ -377,7 +385,7 @@ public class uiHandler : MonoBehaviour
     }
     void btDeleteClick()
     {
-        //Rotina que deleta o polígono atual
+        //Rotina que deleta o polígono atual.
         if (allObjects.Count > 1)
         {
             Destroy(allObjects[wCubeIndex].cube);
@@ -574,6 +582,7 @@ public class uiHandler : MonoBehaviour
     }
     void btSumClick()
     {
+        //Rotina que abre o painel de calculos.
         if (SumPanel != null)
         {
             SumPanel.SetActive(true);
@@ -645,14 +654,11 @@ public class uiHandler : MonoBehaviour
                         break;
 
                 }
-
             }
         }
         FoundObject = GameObject.FindGameObjectsWithTag("editSomaMb");
-
         foreach (GameObject obj in FoundObject)
         {
-
             obj.SetActive(true);
 
             if (obj.GetComponentInChildren<InputField>() != null)
@@ -673,7 +679,6 @@ public class uiHandler : MonoBehaviour
             }
         }
         FoundObject = GameObject.FindGameObjectsWithTag("editSomaMc");
-
         foreach (GameObject obj in FoundObject)
         {
 
@@ -750,7 +755,6 @@ public class uiHandler : MonoBehaviour
             GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield31").SetActive(true);
             GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield32").SetActive(true);
             GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield33").SetActive(true);
-
             GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield01").SetActive(true);
             GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield11").SetActive(true);
             GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield12").SetActive(true);
@@ -769,10 +773,12 @@ public class uiHandler : MonoBehaviour
     }
     void btCloseSumClick()
     {
+        //Rotina que fecha o painel de calculos.
         SumPanel.SetActive(false);
     }
     void btSumSumClick()
     {
+        //Rotina que aplica o calculo de soma de matrizes e atribui o resultado na matriz resultante.
         GameObject.Find("/Canvas/pnMath/lbEqual").SetActive(true);
         GameObject.Find("/Canvas/pnMath/lbSig").SetActive(true);
         GameObject.Find("/Canvas/pnMath/lbSig").GetComponentInChildren<Text>().text = "+";
@@ -821,6 +827,7 @@ public class uiHandler : MonoBehaviour
     }
     void btSumSubClick()
     {
+        //Rotina que aplica o calculo de subtração de matrizes e atribui o resultado na matriz resultante.
         GameObject.Find("/Canvas/pnMath/lbEqual").SetActive(true);
         GameObject.Find("/Canvas/pnMath/lbSig").SetActive(true);
         GameObject.Find("/Canvas/pnMath/lbSig").GetComponentInChildren<Text>().text = "-";
@@ -865,10 +872,10 @@ public class uiHandler : MonoBehaviour
         GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield31").GetComponentInChildren<InputField>().text = matrixSum.m31.ToString();
         GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield32").GetComponentInChildren<InputField>().text = matrixSum.m32.ToString();
         GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield33").GetComponentInChildren<InputField>().text = matrixSum.m33.ToString();
-
     }
     void btSumMultClick()
     {
+        //Rotina que aplica o calculo de multiplicação de matrizes e atribui o resultado na matriz resultante.
         GameObject.Find("/Canvas/pnMath/lbEqual").SetActive(true);
         GameObject.Find("/Canvas/pnMath/lbSig").SetActive(true);
         GameObject.Find("/Canvas/pnMath/lbSig").GetComponentInChildren<Text>().text = "*";
@@ -893,19 +900,6 @@ public class uiHandler : MonoBehaviour
                 (float.Parse(GameObject.Find("/Canvas/pnMath/MatrixAnt/mafield31").GetComponentInChildren<InputField>().text) * float.Parse(GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield10").GetComponentInChildren<InputField>().text)) +
                 (float.Parse(GameObject.Find("/Canvas/pnMath/MatrixAnt/mafield32").GetComponentInChildren<InputField>().text) * float.Parse(GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield20").GetComponentInChildren<InputField>().text)) +
                 (float.Parse(GameObject.Find("/Canvas/pnMath/MatrixAnt/mafield33").GetComponentInChildren<InputField>().text) * float.Parse(GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield30").GetComponentInChildren<InputField>().text))).ToString();
-
-            //GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield10").GetComponentInChildren<InputField>().text = float.Parse(GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield10").GetComponentInChildren<InputField>().text).ToString();
-            //GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield11").GetComponentInChildren<InputField>().text = float.Parse(GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield11").GetComponentInChildren<InputField>().text).ToString();
-            //GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield12").GetComponentInChildren<InputField>().text = float.Parse(GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield12").GetComponentInChildren<InputField>().text).ToString();
-            //GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield13").GetComponentInChildren<InputField>().text = (float.Parse(GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield13").GetComponentInChildren<InputField>().text) + float.Parse(GameObject.Find("/Canvas/pnMath/MatrixAnt/mafield01").GetComponentInChildren<InputField>().text)).ToString();
-            //GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield20").GetComponentInChildren<InputField>().text = float.Parse(GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield20").GetComponentInChildren<InputField>().text).ToString();
-            //GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield21").GetComponentInChildren<InputField>().text = float.Parse(GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield21").GetComponentInChildren<InputField>().text).ToString();
-            //GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield22").GetComponentInChildren<InputField>().text = float.Parse(GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield22").GetComponentInChildren<InputField>().text).ToString();
-            //GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield23").GetComponentInChildren<InputField>().text = (float.Parse(GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield23").GetComponentInChildren<InputField>().text) + float.Parse(GameObject.Find("/Canvas/pnMath/MatrixAnt/mafield02").GetComponentInChildren<InputField>().text)).ToString();
-            //GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield30").GetComponentInChildren<InputField>().text = float.Parse(GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield30").GetComponentInChildren<InputField>().text).ToString();
-            //GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield31").GetComponentInChildren<InputField>().text = float.Parse(GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield31").GetComponentInChildren<InputField>().text).ToString();
-            //GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield32").GetComponentInChildren<InputField>().text = float.Parse(GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield32").GetComponentInChildren<InputField>().text).ToString();
-            //GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield33").GetComponentInChildren<InputField>().text = float.Parse(GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield33").GetComponentInChildren<InputField>().text).ToString();
         }
         else
         {
@@ -989,14 +983,12 @@ public class uiHandler : MonoBehaviour
                 (float.Parse(GameObject.Find("/Canvas/pnMath/MatrixAnt/mafield32").GetComponentInChildren<InputField>().text) * float.Parse(GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield23").GetComponentInChildren<InputField>().text)) +
                 (float.Parse(GameObject.Find("/Canvas/pnMath/MatrixAnt/mafield33").GetComponentInChildren<InputField>().text) * float.Parse(GameObject.Find("/Canvas/pnMath/MatrixSum/mbfield33").GetComponentInChildren<InputField>().text))).ToString();
         }
-
     }
     void btPegaSumClick()
     {
+        //Rotina que atualiza a matriz principal com os valores resultantes do calculo de matrizes.
         if (allObjects[wCubeIndex].cube.tag == "Point")
         {
-            //btDeleteClick();
-            //btInsertClick();
             field00.text = GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield00").GetComponentInChildren<InputField>().text;
             field10.text = GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield10").GetComponentInChildren<InputField>().text;
             field20.text = GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield20").GetComponentInChildren<InputField>().text;
@@ -1008,17 +1000,14 @@ public class uiHandler : MonoBehaviour
             field01.text = GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield01").GetComponentInChildren<InputField>().text;
             field02.text = GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield02").GetComponentInChildren<InputField>().text;
             field03.text = GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield03").GetComponentInChildren<InputField>().text;
-
             field10.text = GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield10").GetComponentInChildren<InputField>().text;
             field11.text = GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield11").GetComponentInChildren<InputField>().text;
             field12.text = GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield12").GetComponentInChildren<InputField>().text;
             field13.text = GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield13").GetComponentInChildren<InputField>().text;
-
             field20.text = GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield20").GetComponentInChildren<InputField>().text;
             field21.text = GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield21").GetComponentInChildren<InputField>().text;
             field22.text = GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield22").GetComponentInChildren<InputField>().text;
             field23.text = GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield23").GetComponentInChildren<InputField>().text;
-
             field30.text = GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield30").GetComponentInChildren<InputField>().text;
             field31.text = GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield31").GetComponentInChildren<InputField>().text;
             field32.text = GameObject.Find("/Canvas/pnMath/MatrixPos/mcfield32").GetComponentInChildren<InputField>().text;

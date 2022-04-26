@@ -7243,7 +7243,6 @@ GameObject:
   - component: {fileID: 509530936}
   - component: {fileID: 509530935}
   - component: {fileID: 509530934}
-  - component: {fileID: 509530933}
   m_Layer: 5
   m_Name: btSumClose
   m_TagString: Untagged
@@ -7271,67 +7270,6 @@ RectTransform:
   m_AnchoredPosition: {x: 252.8, y: 97}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &509530933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 509530931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 930165ffc11c11b46be56b424d1e6fc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Panel: {fileID: 1165206452}
-  fieldA00: {fileID: 0}
-  fieldA01: {fileID: 0}
-  fieldA02: {fileID: 0}
-  fieldA03: {fileID: 0}
-  fieldA10: {fileID: 0}
-  fieldA11: {fileID: 0}
-  fieldA12: {fileID: 0}
-  fieldA13: {fileID: 0}
-  fieldA20: {fileID: 0}
-  fieldA21: {fileID: 0}
-  fieldA22: {fileID: 0}
-  fieldA23: {fileID: 0}
-  fieldA30: {fileID: 0}
-  fieldA31: {fileID: 0}
-  fieldA32: {fileID: 0}
-  fieldA33: {fileID: 0}
-  fieldB00: {fileID: 0}
-  fieldB01: {fileID: 0}
-  fieldB02: {fileID: 0}
-  fieldB03: {fileID: 0}
-  fieldB10: {fileID: 0}
-  fieldB11: {fileID: 0}
-  fieldB12: {fileID: 0}
-  fieldB13: {fileID: 0}
-  fieldB20: {fileID: 0}
-  fieldB21: {fileID: 0}
-  fieldB22: {fileID: 0}
-  fieldB23: {fileID: 0}
-  fieldB30: {fileID: 0}
-  fieldB31: {fileID: 0}
-  fieldB32: {fileID: 0}
-  fieldB33: {fileID: 0}
-  fieldC00: {fileID: 0}
-  fieldC01: {fileID: 0}
-  fieldC02: {fileID: 0}
-  fieldC03: {fileID: 0}
-  fieldC10: {fileID: 0}
-  fieldC11: {fileID: 0}
-  fieldC12: {fileID: 0}
-  fieldC13: {fileID: 0}
-  fieldC20: {fileID: 0}
-  fieldC21: {fileID: 0}
-  fieldC22: {fileID: 0}
-  fieldC23: {fileID: 0}
-  fieldC30: {fileID: 0}
-  fieldC31: {fileID: 0}
-  fieldC32: {fileID: 0}
-  fieldC33: {fileID: 0}
 --- !u!114 &509530934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7376,7 +7314,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 509530933}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: ClosePanel
         m_Mode: 1

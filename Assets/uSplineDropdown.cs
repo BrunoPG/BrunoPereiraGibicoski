@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class uSplineDropdown : MonoBehaviour
 {
     Dropdown wDropdown;
-    public GameObject p4,p5,p6,p7,p8,p9,p10;
+    public GameObject p4, p5, p6, p7, p8, p9, p10;
 
     void Start()
     {
+        //Atribuindo rotina de mudança de valores ao componente.
         wDropdown = GetComponent<Dropdown>();
-
         wDropdown.onValueChanged.AddListener(delegate
         {
             DropdownValueChanged(wDropdown);
@@ -22,7 +22,7 @@ public class uSplineDropdown : MonoBehaviour
 
     void DropdownValueChanged(Dropdown prDrop)
     {
-        //Debug.Log(prDrop.value);
+        //Rotina que altera a visibilidade dos pontos.
         p4.SetActive(false);
         p5.SetActive(false);
         p6.SetActive(false);

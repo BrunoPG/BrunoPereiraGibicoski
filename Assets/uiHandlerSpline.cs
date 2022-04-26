@@ -13,6 +13,7 @@ public class uiHandlerSpline : MonoBehaviour
 
     void Start()
     {
+        //Rotina que fecha a tela de tutorial.Rotina que aplica os eventos aos botões da tela de splines.
         btInstructionsCloseClick();
         btVoltar.onClick.AddListener(btVoltarClick);
         btInstructions.onClick.AddListener(btInstructionsClick);
@@ -20,15 +21,14 @@ public class uiHandlerSpline : MonoBehaviour
         GameObject.Find("/Canvas/uQtdPoints").GetComponent<InputField>().text = "10";
     }
 
-    void Update()
-    {
-        
-    }
     void btVoltarClick()
     {
+        //Rotina que volta para o menu principal.
         SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
-    }void btInstructionsClick()
+    }
+    void btInstructionsClick()
     {
+        //Rotina que abre a tela de tutorial.
         if (HelpPanel != null)
         {
             HelpPanel.SetActive(true);
@@ -37,6 +37,7 @@ public class uiHandlerSpline : MonoBehaviour
     }
     void btInstructionsCloseClick()
     {
+        //Rotina que fecha a tela de tutorial.
         HelpPanel.SetActive(false);
     }
 }

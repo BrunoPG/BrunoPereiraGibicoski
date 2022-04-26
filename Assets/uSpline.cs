@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class uBezier : MonoBehaviour
+public class uSpline : MonoBehaviour
 {
     public LineRenderer wLineRenderer;
-
-
     private int wQtdPoints;
     private Vector3[] wPositions;
     private Vector3[] wPoints;
@@ -19,18 +17,19 @@ public class uBezier : MonoBehaviour
 
     private void setPoint(GameObject prPoint, Vector3 prVect)
     {
-        //Debug.Log("set");
+        //Rotina que atualiza o componente de UI com a informação do vetor correspondente.
         prPoint.transform.GetChild(0).gameObject.GetComponent<InputField>().text = prVect.x.ToString();
         prPoint.transform.GetChild(1).gameObject.GetComponent<InputField>().text = prVect.y.ToString();
         prPoint.transform.GetChild(2).gameObject.GetComponent<InputField>().text = prVect.z.ToString();
     }
     private Vector3 getPoint(GameObject prPoint)
     {
-        //Debug.Log("get");
+        //Rotina que retorna o valor do componente de UI e o converte em um vetor válido.
         return new Vector3(uiHandler.strToFloat(prPoint.transform.GetChild(0).gameObject.GetComponent<InputField>()), uiHandler.strToFloat(prPoint.transform.GetChild(1).gameObject.GetComponent<InputField>()), uiHandler.strToFloat(prPoint.transform.GetChild(2).gameObject.GetComponent<InputField>()));
     }
     void pGetPointsStart()
     {
+        //Rotina que inicializa os pontos da tela ao abrir a mesma.
         if (wPoints == null)
         {
             wPoints = new Vector3[10];
@@ -50,6 +49,7 @@ public class uBezier : MonoBehaviour
     }
     void Awake()
     {
+        //Inicialização das listas e do lineRenderer.
         pGetPointsStart();
         for (int i = 0; i < wPoints.Length; i++)
         {
@@ -65,15 +65,11 @@ public class uBezier : MonoBehaviour
     }
     void Start()
     {
+        //Inicialização de variáveis.
         wQtdPoints = uiHandler.strToInt(GameObject.Find("/Canvas/uQtdPoints").GetComponent<InputField>());
-
-
         wQtdPoints = wQtdPoints - 1;
         wPositions = new Vector3[wQtdPoints + 1];
         wLineRenderer.positionCount = wQtdPoints + 1;
-
-
-
         Gizmos.color = Color.yellow;
         wCList = new GameObject[wQtdPoints + 1];
         for (int i = 0; i < wQtdPoints + 1; i++)
@@ -86,6 +82,7 @@ public class uBezier : MonoBehaviour
 
     void Update()
     {
+        //Rotina que monta e atualiza a spline.
         if ((uiHandler.strToInt(GameObject.Find("/Canvas/uQtdPoints").GetComponent<InputField>()) != 1) && (wQtdPoints + 1 != uiHandler.strToInt(GameObject.Find("/Canvas/uQtdPoints").GetComponent<InputField>())))
         {
 
@@ -190,6 +187,7 @@ public class uBezier : MonoBehaviour
 
     private void pDrawNCurve()
     {
+        //Rotina que desenha a linha da spline.
         for (int i = 0; i <= wQtdPoints; i++)
         {
             float t = i / (float)wQtdPoints;
@@ -202,6 +200,7 @@ public class uBezier : MonoBehaviour
     }
     private Vector3 CalculateNCasteljau(float t, Vector3[] p)
     {
+        //Rotina que retorna o valor dos pontos que criam a spline.
         Vector3[] p1 = new Vector3[p.Length];
         for (int i = 0; i < p.Length; i++)
         {

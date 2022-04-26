@@ -61,6 +61,7 @@ public class EndEdit : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private string currentName = "";
     void Update()
     {
+        //Rotina que verifica se o componente atual está sendo focado e chama o hint caso necessário.
         if ((wMouseOver) && (currentName != this.name))
         {
             tooltip.pShowTooltip_Static(fTextTooltip(this.name));
@@ -70,10 +71,10 @@ public class EndEdit : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             this.GetComponent<InputField>().text = "0";
         }
-
     }
     private int fGetIndexList(int prList, string prString)
     {
+        //Rotina que retorna a posição de um campo de uma das matrizes.
         if (prList == 0)
         {
             return objMatrixSum.IndexOf("/Canvas/pnMath/MatrixSum/mbfield" + prString.Substring(prString.Length - 2, 2));
@@ -86,6 +87,7 @@ public class EndEdit : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     private string fTextTooltip(string prString)
     {
+        //Rotina que monta o texto do hint dependendo do campo atual que está sendo focado e pinta os componentes relacionados.
         Color wColor = Color.yellow;
         Color wColorText;
         string wColorTooltip;
@@ -95,49 +97,42 @@ public class EndEdit : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (wSign == "*")
         {
             prRet = "";
-            //if (GameObject.Find("/Canvas/GameObject/field10").activeSelf)
-            //{
-                for (var i = 0; i < 4; i++)
+            for (var i = 0; i < 4; i++)
+            {
+                switch (i)
                 {
-                    switch (i)
-                    {
-                        case 0:
-                            wColorText = Color.black;
-                            wColorTooltip = "black";
-                            break;
-                        case 1:
-                            wColorText = Color.grey;
-                            wColorTooltip = "grey";
-                            break;
-                        case 2:
-                            wColorText = Color.magenta;
-                            wColorTooltip = "magenta";
-                            break;
-                        case 3:
-                            wColorText = new Color32(0, 0, 128, 255);
-                            wColorTooltip = "navy";
-                            break;
-                        default:
-                            wColorText = Color.black;
-                            wColorTooltip = "black";
-                            break;
-                    }
-                    if (prRet != "")
-                    {
-                        prRet = prRet + " + ";
-                    }
-                    prRet = prRet + "<color=" + wColorTooltip + ">" + GameObject.Find(objMatrixAnt[fGetIndexList(1, prString.Substring(prString.Length - 2, 1) + i)]).GetComponentInChildren<InputField>().text + "</color>" + " * " +
-                                    "<color=" + wColorTooltip + ">" + GameObject.Find(objMatrixSum[fGetIndexList(0, i + prString.Substring(prString.Length - 1, 1))]).GetComponentInChildren<InputField>().text + "</color>";
-                    GameObject.Find(objMatrixAnt[fGetIndexList(1, prString.Substring(prString.Length - 2, 1) + i)]).GetComponentInChildren<Image>().color = wColor;
-                    GameObject.Find(objMatrixSum[fGetIndexList(0, i + prString.Substring(prString.Length - 1, 1))]).GetComponentInChildren<Image>().color = wColor;
-                    GameObject.Find(objMatrixAnt[fGetIndexList(1, prString.Substring(prString.Length - 2, 1) + i)]).GetComponentInChildren<InputField>().textComponent.color = wColorText;
-                    GameObject.Find(objMatrixSum[fGetIndexList(0, i + prString.Substring(prString.Length - 1, 1))]).GetComponentInChildren<InputField>().textComponent.color = wColorText;
+                    case 0:
+                        wColorText = Color.black;
+                        wColorTooltip = "black";
+                        break;
+                    case 1:
+                        wColorText = Color.grey;
+                        wColorTooltip = "grey";
+                        break;
+                    case 2:
+                        wColorText = Color.magenta;
+                        wColorTooltip = "magenta";
+                        break;
+                    case 3:
+                        wColorText = new Color32(0, 0, 128, 255);
+                        wColorTooltip = "navy";
+                        break;
+                    default:
+                        wColorText = Color.black;
+                        wColorTooltip = "black";
+                        break;
                 }
-            //}
-            //else
-            //{
-                
-            //}
+                if (prRet != "")
+                {
+                    prRet = prRet + " + ";
+                }
+                prRet = prRet + "<color=" + wColorTooltip + ">" + GameObject.Find(objMatrixAnt[fGetIndexList(1, prString.Substring(prString.Length - 2, 1) + i)]).GetComponentInChildren<InputField>().text + "</color>" + " * " +
+                                "<color=" + wColorTooltip + ">" + GameObject.Find(objMatrixSum[fGetIndexList(0, i + prString.Substring(prString.Length - 1, 1))]).GetComponentInChildren<InputField>().text + "</color>";
+                GameObject.Find(objMatrixAnt[fGetIndexList(1, prString.Substring(prString.Length - 2, 1) + i)]).GetComponentInChildren<Image>().color = wColor;
+                GameObject.Find(objMatrixSum[fGetIndexList(0, i + prString.Substring(prString.Length - 1, 1))]).GetComponentInChildren<Image>().color = wColor;
+                GameObject.Find(objMatrixAnt[fGetIndexList(1, prString.Substring(prString.Length - 2, 1) + i)]).GetComponentInChildren<InputField>().textComponent.color = wColorText;
+                GameObject.Find(objMatrixSum[fGetIndexList(0, i + prString.Substring(prString.Length - 1, 1))]).GetComponentInChildren<InputField>().textComponent.color = wColorText;
+            }
         }
         else
         {
@@ -150,6 +145,7 @@ public class EndEdit : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     private void pLimpaCores()
     {
+        //Rotina que limpa as cores dos componentes das duas matrizes.
         foreach (string comp in objMatrixAnt)
         {
             GameObject.Find(comp).GetComponentInChildren<Image>().color = Color.white;
@@ -163,6 +159,7 @@ public class EndEdit : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void OnPointerExit(PointerEventData eventData)
     {
+        //Rotina que esconde o hint ao foco ser removido do mesmo.
         if (edWithTooltip.Contains(this.name) && (GameObject.Find("/Canvas/pnMath/lbSig").activeSelf))
         {
             wMouseOver = false;
@@ -174,6 +171,7 @@ public class EndEdit : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
+        //Rotina que mostra o hint ao foco ser direcionado ao mesmo.
         if (edWithTooltip.Contains(this.name) && (GameObject.Find("/Canvas/pnMath/lbSig").activeSelf))
         {
             wMouseOver = true;

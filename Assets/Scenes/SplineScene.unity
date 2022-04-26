@@ -3894,7 +3894,7 @@ GameObject:
   - component: {fileID: 649645069}
   - component: {fileID: 649645071}
   m_Layer: 0
-  m_Name: uBezier
+  m_Name: uSpline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4024,6 +4024,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wLineRenderer: {fileID: 649645069}
+  wQtdPoints: 0
+  wPositions: []
+  wPoints: []
+  wPoints2: []
+  wCList: []
+  lineRenderer: {fileID: 0}
   wGameObjList:
   - {fileID: 1627583604}
   - {fileID: 382761108}
@@ -4035,6 +4041,7 @@ MonoBehaviour:
   - {fileID: 1321624942}
   - {fileID: 350293272}
   - {fileID: 1299101644}
+  dropDownIndex: 0
 --- !u!1 &684384188
 GameObject:
   m_ObjectHideFlags: 0
